@@ -21,14 +21,12 @@ class Fermat
         y = x1;
         return aux;
     }
-	static long exponentiation(long bas, long exp, long N)
+	private static long exponentiation(long num_base, long num_exponent, long mod) 
     {
-        if (exp == 0) return 1;
-        if (exp == 1) return bas % N;
-        long t = exponentiation(bas, exp / 2, N);
-        t = (t * t) % N;
-         if (exp % 2 == 0) return t;
-         else return ((bas % N) * t) % N;
+        long answer = 1;
+        for (int x = 0; x < num_exponent; x++)
+        {answer = (answer * num_base) % mod;}
+        return answer;
     }
 	private static void noprim(long a){
 		Console.WriteLine("The number " + a + " is NOT a prime number");
@@ -55,7 +53,7 @@ class Fermat
     {
         long num = Int64.Parse(args[0]);
 		if(num%2 == 0) noprim(num);  
-		if(check(num,50)) prim(num);
+		if(check(num,10)) prim(num);
 		else noprim(num);
     }
 }
